@@ -1,29 +1,12 @@
 using HorizonSideRobots
+r=Robot(15,15; animate=true)
 
-size_left_right = 15
-size_top_bott = 15
-r=Robot(size_left_right,size_top_bott; animate=true)
-
-function perimeter_markers(r::Robot)
-    while isborder(r, HorizonSide(3)) == false
-        move!(r, HorizonSide(3))
+function perimetr_markers(r::Robot)
+    for side in (HorizonSide(i) for i=[3,0,1,2])
+        while isborder(r, side) == false
+        move!(r,side)
+        end
+        putmarker!(r)
     end
-    putmarker!(r)
-    
-    while isborder(r, HorizonSide(0)) == false
-        move!(r, HorizonSide(0))
-    end
-    putmarker!(r)
-    
-    while isborder(r, HorizonSide(1)) == false
-        move!(r, HorizonSide(1))
-    end
-    putmarker!(r)
-    
-    while isborder(r, HorizonSide(2)) == false
-        move!(r, HorizonSide(2))
-    end
-    putmarker!(r)
-
-end 
-perimeter_markers(r)
+end
+perimetr_markers(r)
